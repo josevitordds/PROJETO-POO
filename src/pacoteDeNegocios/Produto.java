@@ -1,15 +1,14 @@
-public class Produto {
-    private static int contadorId = 1;
-    private int id;
+package pacoteDeNegocios;
+
+public class Produto extends ProdutoBase {
+    private static int contadorId = 1; 
     private int quantidadeEstoque;
     private double preco;
-    private String nome;
-    private String descricao;
-    private String categoria;
+    private final String categoria;
+    private final String descricao;
 
     public Produto(String nome, double preco, int quantidadeEstoque, String categoria, String descricao) {
-        this.id = contadorId++;
-        this.nome = nome;
+        super(contadorId++, nome); 
         this.preco = preco;
         this.categoria = categoria;
         this.quantidadeEstoque = quantidadeEstoque;
@@ -18,17 +17,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "ID do Produto: " + id + ", Nome: " + nome + ", Preço: R$ " + preco +
-                ", Categoria: " + categoria + ", Estoque: " + quantidadeEstoque +
-                ", Descrição: " + descricao;
-    }
-    
-    public int getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
+        return super.toString() + ", Preço: R$ " + preco + ", Categoria: " + categoria + ", Estoque: " + quantidadeEstoque + ", Descrição: " + descricao;
     }
 
     public double getPreco() {
@@ -42,7 +31,7 @@ public class Produto {
     public int getQuantidadeEstoque() {
         return quantidadeEstoque;
     }
-    
+
     public String getDescricao() {
         return descricao;
     }
@@ -51,7 +40,7 @@ public class Produto {
         this.preco = novoPreco;
     }
 
-    public void setEstoque(int novaQuantidadeEstoque) {
+    public void setQuantidadeEstoque(int novaQuantidadeEstoque) {
         this.quantidadeEstoque = novaQuantidadeEstoque;
     }
 }

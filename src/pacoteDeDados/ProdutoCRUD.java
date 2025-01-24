@@ -1,8 +1,11 @@
-import java.util.List;
+package pacoteDeDados;
+
 import java.util.ArrayList;
+import java.util.List;
+import pacoteDeNegocios.Produto;
 
 public class ProdutoCRUD {
-    private List<Produto> produtos;
+    private final List<Produto> produtos;
 
     public ProdutoCRUD() {
         this.produtos = new ArrayList<>();
@@ -12,15 +15,15 @@ public class ProdutoCRUD {
         produtos.add(produto);
     }
 
-    public boolean removerProduto(int id) {
+    public String removerProduto(int id) {
         for (int i = produtos.size() - 1; i >= 0; i--) {
             Produto produto = produtos.get(i);
             if (produto.getId() == id) {
                 produtos.remove(i);
-                return true;
+                return "\nProduto removido com sucesso!";
             }
         }
-        return false;
+        return "\nProduto não encontrado.";
     }
 
     public void atualizarPrecoProduto(int id, double novoPreco) {
@@ -35,12 +38,12 @@ public class ProdutoCRUD {
     public void atualizarEstoqueProduto(int id, int novaQuantidadeEstoque) {
         for (Produto produto : produtos) {
             if (produto.getId() == id) {
-                produto.setEstoque(novaQuantidadeEstoque);
+                produto.setQuantidadeEstoque(novaQuantidadeEstoque);
                 break;
             }
         }
     }
-    
+
     public Produto buscarProdutoPorId(int id) {
         for (Produto produto : produtos) {
             if (produto.getId() == id) {
@@ -49,7 +52,7 @@ public class ProdutoCRUD {
         }
         return null;
     }
-    
+
     public Produto buscarProdutoPorNome(String nome) {
         for (Produto produto : produtos) {
             if (produto.getNome().equals(nome)) {

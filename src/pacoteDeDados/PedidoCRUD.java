@@ -1,0 +1,33 @@
+package pacoteDeDados;
+
+import java.util.ArrayList;
+import java.util.List;
+import pacoteDeNegocios.Carrinho;
+import pacoteDeNegocios.Cliente;
+import pacoteDeNegocios.Pedido;
+
+public class PedidoCRUD {
+    private final List<Pedido> pedidos;
+
+    public PedidoCRUD() {
+        this.pedidos = new ArrayList<>();
+    }
+
+    public Pedido criarPedido(Cliente cliente, Carrinho carrinho) {
+        int novoId = pedidos.size() + 1;
+        Pedido novoPedido = new Pedido(cliente, novoId, carrinho.getItens(), carrinho.getValorTotal());
+        pedidos.add(novoPedido);
+        return novoPedido;
+    }
+
+    public Pedido visualizarUltimaVenda() {
+        if (pedidos.isEmpty()) {
+            return null;
+        }
+        return pedidos.get(pedidos.size() - 1);
+    }
+
+    public List<Pedido> listarPedidos() {
+        return pedidos;
+    }
+}
